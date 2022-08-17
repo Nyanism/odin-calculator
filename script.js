@@ -38,7 +38,6 @@ function populate(num) {
 
 let previousDisplay = 0;
 const numberButtons = Array.from(document.querySelectorAll(".button-number"));
-console.log(numberButtons);
 numberButtons.forEach(button => {
   let number = button.textContent;
   button.addEventListener("click", () => populate(number));
