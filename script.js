@@ -29,3 +29,17 @@ function operate(operator, num1, num2) {
       return divide(num1,num2);
   }
 }
+
+function populate(num) {
+  previousDisplay = document.querySelector(".result-display").textContent;
+  document.querySelector(".result-display").textContent = num;
+  console.log(previousDisplay);
+}
+
+let previousDisplay = 0;
+const numberButtons = Array.from(document.querySelectorAll(".button-number"));
+console.log(numberButtons);
+numberButtons.forEach(button => {
+  let number = button.textContent;
+  button.addEventListener("click", () => populate(number));
+})
