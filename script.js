@@ -73,3 +73,9 @@ equalsButton.addEventListener("click", () => {
   equation = {};
   storedValue = 0;
 });
+
+const clearButton = document.querySelector(".button-clear");
+clearButton.addEventListener("click", () => {
+  equation = {};
+  populate(0);
+})
