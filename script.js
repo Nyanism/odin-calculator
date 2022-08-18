@@ -69,7 +69,11 @@ operatorButtons.forEach(button => {
 const equalsButton = document.querySelector(".button-equals");
 equalsButton.addEventListener("click", () => {
   let result = operate(equation.operator, parseInt(equation.stored), parseInt(storedValue));
-  populate(Math.round(result * 10000)/10000);
+  if(result === undefined) {
+    populate(0);
+  } else {
+    populate(Math.round(result * 10000)/10000);
+  }
   equation = {};
   storedValue = 0;
 });
