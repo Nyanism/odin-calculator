@@ -31,7 +31,14 @@ function operate(operator, num1, num2) {
 }
 
 function populate(num) {
-  document.querySelector(".result-display").textContent = num;
+  if(num === Infinity) {
+    document.querySelector(".result-display").textContent = "Are you trying to destroy the world?"
+    equation = {};
+    storedValue = 0;
+    return;
+  } else {
+    document.querySelector(".result-display").textContent = num;
+  }
   storedValue = num;
 }
 
