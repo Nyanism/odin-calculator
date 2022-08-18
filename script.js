@@ -31,14 +31,45 @@ function operate(operator, num1, num2) {
 }
 
 function populate(num) {
-  previousDisplay = document.querySelector(".result-display").textContent;
   document.querySelector(".result-display").textContent = num;
-  console.log(previousDisplay);
+  storedValue = num;
 }
 
-let previousDisplay = 0;
+let storedValue = 0;
 const numberButtons = Array.from(document.querySelectorAll(".button-number"));
 numberButtons.forEach(button => {
   let number = button.textContent;
-  button.addEventListener("click", () => populate(number));
+  button.addEventListener("click", () => {
+    if(storedValue === 0 ) {
+      populate(number);
+    } else {
+      populate(storedValue += number);
+    }
+  });
 })
+
+let equation = {};
+const operatorButtons = Array.from(document.querySelectorAll(".button-operator"));
+operatorButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    if(!("operator" in equation)) {
+      equation.operator = button.textContent;
+      equation.stored = storedValue;
+      storedValue = 0;
+    } else {
+      equation.stored = operate(equation.operator, parseInt(equation.stored), parseInt(storedValue));
+      equation.operator = button.textContent;
+      populate(equation.stored);
+      storedValue = 0;
+    }
+    
+  })
+});
+
+const equalsButton = document.querySelector(".button-equals");
+equalsButton.addEventListener("click", () => {
+  let result = operate(equation.operator, parseInt(equation.stored), parseInt(storedValue));
+  populate(result);
+  equation = {};
+  storedValue = 0;
+});
